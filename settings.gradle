@@ -1,2 +1,3 @@
-rootProject.name = 'ipplus360-awdb-java'
+rootProject.name = 'ipplus360-java'
+include 'ipplus360-awdb-java'
 
