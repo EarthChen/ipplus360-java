@@ -1,0 +1,124 @@
+plugins {
+    id "maven-publish"
+    id "signing"
+    id 'java'
+}
+
+group 'io.github.earthchen'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    compile("org.slf4j:slf4j-api:1.7.30")
+    compileOnly("ch.qos.logback:logback-core:1.2.3")
+    compileOnly("ch.qos.logback:logback-classic:1.2.3")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+javadoc {
+    description = "生成jar格式的javadoc。"
+    // 只显示 protected 和 public 的类和成员
+    options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+    options.author = true
+    options.version = true
+    options.header = project.name
+    // 静默javadoc检查（比如不支持@date会报错等），jdk 8+
+    options.addStringOption('Xdoclint:none', '-quiet')
+    // 防止本地打开中文乱码
+    options.addStringOption("charset", "UTF-8")
+    // suppress warnings due to cross-module @see and @link references;
+    // note that global 'api' task does display all warnings.
+    logging.captureStandardError LogLevel.INFO
+    // suppress "## warnings" message
+    logging.captureStandardOutput LogLevel.INFO
+    // 编码一定要配置否则直接出错
+    options.encoding = "UTF-8"
+    options.charSet = "UTF-8"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+            from components.java
+
+            artifact sourceJar
+            artifact javadocJar
+
+
+            pom {
+                name = project.name
+                description = project.description
+            }
+
+            pom {
+                name = project.name
+                description = 'add ipplus360 java sdk'
+                url = 'https://github.com/EarthChen/ipplus360-java'
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                        comments = 'A business-friendly OSS license'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'earthchen'
+                        email = 'earthchen1996@gmail.com'
+                        roles = ['Java Developer']
+                        url = "https://earthchen.github.io"
+                    }
+                }
+                scm {
+                    url = 'https://github.com/EarthChen/ipplus360-java'
+                    connection = 'scm:git:https://github.com/EarthChen/ipplus360-java.git'
+                    developerConnection = 'scm:git:github.com/EarthChen/ipplus360-java.git'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name "oss"
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/content/repositories/releases"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

@@ -37,6 +37,8 @@ spy.log
 ### VS Code ###
 .vscode/
 *.awdb
+gradle.properties
+*.gpg
 
 
 
