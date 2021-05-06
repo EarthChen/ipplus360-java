@@ -111,6 +111,8 @@ publishing {
             def releasesRepoUrl = "https://s01.oss.sonatype.org/content/repositories/releases"
             def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            def sonatypeUsername = System.getenv("SONATYPE_USERNAME") ?: "username"
+            def sonatypePassword = System.getenv("SONATYPE_PASSWORD") ?: "password"
             credentials {
                 username = sonatypeUsername
                 password = sonatypePassword
@@ -121,4 +123,12 @@ publishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+signMavenJavaPublication {
+    if (project.hasProperty("sign")) {
+        enabled(true)
+    } else {
+        enabled(false)
+    }
 }
