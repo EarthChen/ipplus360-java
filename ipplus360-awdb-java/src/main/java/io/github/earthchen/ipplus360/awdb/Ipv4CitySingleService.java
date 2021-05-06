@@ -15,18 +15,19 @@ import java.net.InetAddress;
  * @author earthchen
  * @date 2021/4/30
  **/
-public class AwdbClient implements Ipv4CitySingleInterface {
+public class Ipv4CitySingleService implements Ipv4CitySingleInterface {
 
-    private static final Logger log = LoggerFactory.getLogger(AwdbClient.class);
+    private static final Logger log = LoggerFactory.getLogger(Ipv4CitySingleService.class);
 
     private AWReader reader;
 
-    public AwdbClient(AWReader reader) {
+    public Ipv4CitySingleService(AWReader reader) {
         this.reader = reader;
+        log.info("awdb metadata={}", reader.getMetadata());
     }
 
-    public AwdbClient(File databaseFile) throws IOException {
-        this.reader = new AWReader(databaseFile);
+    public Ipv4CitySingleService(File databaseFile) throws IOException {
+        this(new AWReader(databaseFile));
     }
 
     @Override
@@ -45,6 +46,7 @@ public class AwdbClient implements Ipv4CitySingleInterface {
         return reader;
     }
 
+    @Override
     public void setReader(AWReader reader) {
         this.reader = reader;
     }

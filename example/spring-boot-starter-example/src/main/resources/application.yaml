@@ -1,0 +1,8 @@
+ipplus360:
+  ipv4-city-single:
+    database-path: /Users/earthchen/work/rz/ip/ipplus360-awdb-java/IP_city_single_WGS84.awdb
+    refresh:
+      enabled: false
+      time: 5000
+
+

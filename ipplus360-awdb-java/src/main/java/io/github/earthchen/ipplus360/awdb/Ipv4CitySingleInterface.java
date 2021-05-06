@@ -1,6 +1,7 @@
 package io.github.earthchen.ipplus360.awdb;
 
 import io.github.earthchen.ipplus360.awdb.db.AWReader;
+import io.github.earthchen.ipplus360.awdb.db.Metadata;
 import io.github.earthchen.ipplus360.awdb.model.city.Ipv4City;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -30,7 +31,13 @@ public interface Ipv4CitySingleInterface {
         return null;
     }
 
+    default Metadata getMetadata(){
+        return getReader().getMetadata();
+    }
+
     AWReader getReader();
+
+    void setReader(AWReader awReader);
 
     Ipv4City getCity(InetAddress address);
 }

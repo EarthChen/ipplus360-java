@@ -7,16 +7,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-class AwdbClientTest {
+class Ipv4CitySingleServiceTest {
 
-    AwdbClient awdbClient = new AwdbClient(new File("../IP_city_single_WGS84.awdb"));
+    Ipv4CitySingleService ipv4CitySingleService = new Ipv4CitySingleService(new File("../IP_city_single_WGS84.awdb"));
 
-    AwdbClientTest() throws IOException {
+    Ipv4CitySingleServiceTest() throws IOException {
     }
 
     @Test
     void getCity() {
-        Ipv4City ipv4City = awdbClient.getCity(getRandomIp());
+        Ipv4City ipv4City = ipv4CitySingleService.getCity(getRandomIp());
         System.out.println(ipv4City);
     }
 
