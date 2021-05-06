@@ -1,5 +1,7 @@
 # ipplus360 离线 ip 数据库 sdk
 
+[![](https://jitpack.io/v/EarthChen/ipplus360-java.svg)](https://jitpack.io/#EarthChen/ipplus360-java)
+
 >暂时只提供 ipv4城市库(没有其他数据库可供测试)
 
 
