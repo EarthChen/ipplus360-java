@@ -39,6 +39,7 @@ spy.log
 *.awdb
 gradle.properties
 *.gpg
+*.jar
 
 
 
