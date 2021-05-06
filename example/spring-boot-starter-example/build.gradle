@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    springBootVersion = "2.3.0.RELEASE"
+}
+
+
+group 'io.github.earthchen'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    implementation(project(":ipplus360-awdb-spring-boot-starter"))
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
