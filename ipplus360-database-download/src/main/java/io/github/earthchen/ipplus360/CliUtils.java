@@ -24,11 +24,14 @@ public class CliUtils {
         targetPathOption.setRequired(true);
 
         Option fixDelayOption = new Option(fixDelayOpt, "fixDelay", true, "fixDelay");
+
+        Option databaseTypeOption = new Option(databaseTypeOpt, "databaseType", true, "databaseType");
         options.addOption(downloadIdOption);
         options.addOption(downloadFilenameOption);
         options.addOption(downloadPathOption);
         options.addOption(targetPathOption);
         options.addOption(fixDelayOption);
+        options.addOption(databaseTypeOption);
         return options;
     }
 
@@ -41,9 +44,9 @@ public class CliUtils {
     public static final String downloadPathOpt = "p";
     public static final String targetPathOpt = "t";
     public static final String fixDelayOpt = "d";
+    public static final String databaseTypeOpt = "b";
 
-
-    public static final String tmpDatabaseFilename = "database.tmp";
+    public static final String tmpDatabaseFilename = "database.zip";
 
     public static DownloadCliArgs getDownloadArgs(String[] args) throws ParseException {
         DownloadCliArgs downloadCliArgs = new DownloadCliArgs();

@@ -16,9 +16,10 @@ ENV fixedDelay=-1
 
 COPY ./application.jar application.jar
 
-CMD java application.jar \
+CMD java -jar application.jar \
     -i=${downloadId} \
     -f=${filename} \
     -t=${targetFilenamePath} \
     -p=${downloadPath} \
-    -d=${fixedDelay}
+    -d=${fixedDelay} \
+    -b=${databaseType}
