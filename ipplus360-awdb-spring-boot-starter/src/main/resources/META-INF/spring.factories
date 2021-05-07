@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.earthchen.ipplus360.awdb.starter.Ipplus360AwdbAutoConfig
