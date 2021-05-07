@@ -18,7 +18,7 @@ implementation("io.github.earthchen:ipplus360-awdb-java:${latest}")
 
 同时支持 jetpack
 ```groovy
-implementation("com.github.earthchen:ipplus360-awdb-java:${latest}")
+implementation("com.github.earthchen.ipplus360-java:ipplus360-awdb-java:${latest}")
 ```
 
 2. 使用
@@ -43,7 +43,7 @@ implementation("io.github.earthchen:ipplus360-awdb-spring-boot-starter:${latest}
 
 同时支持 jetpack
 ```groovy
-implementation("com.github.earthchen:ipplus360-awdb-spring-boot-starter:${latest}")
+implementation("com.github.earthchen.ipplus360-java:ipplus360-awdb-spring-boot-starter:${latest}")
 ```
 
 2. 使用
