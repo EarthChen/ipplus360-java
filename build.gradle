@@ -2,16 +2,19 @@ plugins {
     id 'java'
 }
 
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { url 'https://jitpack.io' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        mavenCentral()
+    }
+}
 group 'io.github.earthchen'
 version '1.0.0-SNAPSHOT'
 
-repositories {
-    mavenLocal()
-    maven { url 'https://jitpack.io' }
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-    mavenCentral()
-}
 
 dependencies {
 
