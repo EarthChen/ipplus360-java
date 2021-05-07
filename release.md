@@ -10,3 +10,9 @@
 
 - 封装ipplus360-awdb-java 功能做为 spring-boot-starter
 - 增加定时刷新 database 功能
+
+# ipplus360-database-download
+
+## 1.0.0 
+- 提供 database 下载功能并校验 md5
+- 提供 docker 镜像使用

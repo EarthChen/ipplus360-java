@@ -18,7 +18,7 @@ implementation("io.github.earthchen:ipplus360-awdb-java:${latest}")
 
 同时支持 jetpack
 ```groovy
-implementation("com.github.earthchen:ipplus360-awdb-java:${latest}")
+implementation("com.github.earthchen.ipplus360-java:ipplus360-awdb-java:${latest}")
 ```
 
 2. 使用
@@ -43,7 +43,7 @@ implementation("io.github.earthchen:ipplus360-awdb-spring-boot-starter:${latest}
 
 同时支持 jetpack
 ```groovy
-implementation("com.github.earthchen:ipplus360-awdb-spring-boot-starter:${latest}")
+implementation("com.github.earthchen.ipplus360-java:ipplus360-awdb-spring-boot-starter:${latest}")
 ```
 
 2. 使用
@@ -59,6 +59,40 @@ ipplus360:
       # 刷新频率 ms
       time: 5000
 ```
+
+## ipplus360-database-download
+
+database 下载工具
+
+### 本地启动
+```bash
+$  java -jar app.jar -i={} -f={} -t={} -p={} -b={}
+```
+
+### 参数说明
+```java
+public static final String downloadIdOpt = "i";
+public static final String downloadFilenameOpt = "f";
+public static final String downloadPathOpt = "p";
+public static final String targetPathOpt = "t";
+public static final String fixDelayOpt = "d";
+public static final String databaseTypeOpt = "b";
+```
+
+### docker 执行
+
+```bash
+$ docker run --name=ipplus360-download \
+  -e downloadId={下载 id} \
+  -e downloadPath=/tmp
+  -e filename={IP_city_single_WGS84_awdb} \
+  -e databaseType=awdb
+  -e targetFilenamePath={目标地址} \
+  -e fixedDelay=-1 \
+  -it ghcr.io/earthchen/ipplus360-database-download:1.0.0
+```
+
+
 
 
 

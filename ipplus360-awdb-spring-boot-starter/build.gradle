@@ -7,19 +7,26 @@ plugins {
 
 ext {
     springBootVersion = "2.3.0.RELEASE"
+    ipplus360AwdbJavaVersion = "1.0.0"
 }
+
 
 group 'io.github.earthchen'
 version '1.0.0'
 
 repositories {
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
     mavenCentral()
 }
 
 
 dependencies {
     compile("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
-    compile(project(":ipplus360-awdb-java"))
+    compile("com.github.earthchen.ipplus360-java:ipplus360-awdb-java:${ipplus360AwdbJavaVersion}")
+//    compile(project(":ipplus360-awdb-java"))
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }

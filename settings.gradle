@@ -4,4 +4,5 @@ include 'ipplus360-awdb-spring-boot-starter'
 include 'example'
 include 'example:spring-boot-starter-example'
 findProject(':example:spring-boot-starter-example')?.name = 'spring-boot-starter-example'
+include 'ipplus360-database-download'
 
