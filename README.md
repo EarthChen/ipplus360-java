@@ -92,6 +92,7 @@ $ docker run --name=ipplus360-download \
   -it ghcr.io/earthchen/ipplus360-database-download:1.0.0
 ```
 
+> 需要先下载再查询 md5 ，否则 md5 是上次生成的数据库文件
 
 
 
