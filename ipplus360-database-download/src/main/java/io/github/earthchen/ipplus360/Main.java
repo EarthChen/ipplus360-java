@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * @author earthchen
@@ -91,7 +92,7 @@ public class Main {
         if (needMoved) {
             log.info("database updated metadata={}", awReader.getMetadata());
             Files.move(databaseFile.toPath(),
-                    Paths.get(downloadCliArgs.getTargetFilenamePath()));
+                    Paths.get(downloadCliArgs.getTargetFilenamePath()), StandardCopyOption.REPLACE_EXISTING);
         }
     }
 }
