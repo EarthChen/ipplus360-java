@@ -36,7 +36,7 @@ public class DownloadUtil {
     private static OkHttpClient getClient() {
         return new OkHttpClient.Builder()
                 // 是否开启缓存
-                .retryOnConnectionFailure(false)
+                .retryOnConnectionFailure(true)
                 //连接池
                 .connectionPool(pool())
                 .connectTimeout(100, TimeUnit.SECONDS)
@@ -165,12 +165,14 @@ public class DownloadUtil {
 
     public static void downloadBySync(final String url, final String destFileDir, final String destFileName) throws IOException {
         log.info("download sync url={} destFileDir={} destFileName={}", url, destFileDir, destFileName);
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
         // 异步请求
         Response response = null;
         InputStream is = null;
         byte[] buf = new byte[4096];
-        int len = 0;
+        // int len = 0;
         FileOutputStream fos = null;
 
         try {
@@ -188,11 +190,12 @@ public class DownloadUtil {
                 fos = new FileOutputStream(file);
                 int size = 0;
                 long total = response.body().contentLength();
+                log.info("下载文件 length={}", total);
                 while ((size = is.read(buf)) != -1) {
-                    len += size;
+                    // len += size;
                     fos.write(buf, 0, size);
-                    int process = (int) Math.floor(((double) len / total) * 100);
-                    log.info("download process" + process);
+                    // int process = (int) Math.floor(((double) len / total) * 100);
+                    // log.info("download process" + process);
                 }
                 fos.flush();
             } else {

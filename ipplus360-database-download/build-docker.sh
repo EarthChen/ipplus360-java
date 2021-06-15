@@ -6,7 +6,7 @@ REGISTRY="ghcr.io"
 
 NAME="ipplus360-database-download"
 
-VERSION=1.0.2
+VERSION=1.0.3
 
 DOCKER_NAME="${REGISTRY}/earthchen/${NAME}:${VERSION}"
 
