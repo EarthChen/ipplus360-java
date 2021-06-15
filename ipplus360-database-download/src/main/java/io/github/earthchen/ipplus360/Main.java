@@ -34,7 +34,7 @@ public class Main {
     /**
      * @throws IOException
      */
-    private static void download(DownloadCliArgs downloadCliArgs, int times) throws IOException {
+    public static void download(DownloadCliArgs downloadCliArgs, int times) throws IOException {
         // 删除重试的文件
         Files.deleteIfExists(Paths.get(downloadCliArgs.getDownloadPath(), CliUtils.tmpDatabaseFilename));
         // 下载 zip
